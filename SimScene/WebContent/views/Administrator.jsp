@@ -29,17 +29,6 @@ td,th {
 	z-index:2;
 	background-color:#00ccff;
 }
-#div2{
-	display: none;
-	position: absolute;
-	width:700px;;
-	height:450px;
-	margin-left:380px;
-	margin-top:200px;
-	text-align: center;
-	z-index:2;
-	background-color:#00ccff;
-}
 #insidetable{
 	position:relative;
 	margin-left:20px;
@@ -64,15 +53,6 @@ document.getElementById("open").style.display="none";
 function CloseDiv(){
 document.getElementById("div1").style.display="none";
 document.getElementById("open").style.display="block";
-}
-function OpenDiv2(){
-	document.getElementById("div2").style.display="block";
-	document.getElementById("open").style.display="none";
-}
-function deleteRow(r)
-{
-var i=r.parentNode.parentNode.rowIndex;
-document.getElementById('table').deleteRow(i);
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -202,7 +182,7 @@ document.getElementById('table').deleteRow(i);
             	out.println("<td>"+"<a href='delete.jsp?Name="+rs.getString("Name")+"'>删除</a></td>");
             %>
             <%
-            	out.println("<td>"+"<a href='javascript:OpenDiv2()'>编辑</a>"+"</td>");
+        	    out.println("<td>"+"<a href='edit.jsp?Name="+rs.getString("Name")+"&Password="+rs.getString("Password")+"&Pname="+rs.getString("Privilege_name")+"&Company="+rs.getString("Company")+"&Validity="+rs.getString("Validity")+"&Admit_vdb_base="+rs.getString("Admit_vdb_base")+"&Admit_vdb_detail="+rs.getString("Admit_vdb_detail")+"&Admit_sim="+rs.getString("Admit_sim")+"&Admin_download="+rs.getString("Admin_download")+"&Admin="+rs.getString("Admin")+",'>编辑</a></td>");
             %>
         </tr> 
 <% } %>
@@ -224,28 +204,6 @@ document.getElementById('table').deleteRow(i);
 		<input type="submit" name="submit" value="保存" style="width:100px; height:50px;">
 		<button type="button" id="close" style="width:100px; height:50px;" onclick="CloseDiv()" id="open">关闭</button>
 		</form>
-</div>
-<div id="div2">
-<%while (rs.next()){
-%>
-}
-<form action="save.jsp" method="post">
-	<table background="white" id="insidetable">
-		<tr><td>姓名</td><td><input name="usn" type="text" value=<%=rs.getString("Name")%>></td></tr>
-		<tr><td>密码</td><td><input name="psw" type="text" value=<%=rs.getString("Password")%>></td></tr>
-		<tr><td>权限</td><td><input name="privilege" type="text" value=<%=rs.getString("Privilege_name")%>></td></tr>
-		<tr><td>公司</td><td><input name="company" type="text" value=<%=rs.getString("Company")%>></td></tr>
-		<tr><td>有效期</td><td><input name="date" type="text" value=<%=rs.getString("Validity")%>></td></tr>
-		<tr><td>能否读取Vdb基础表</td><td><input name="vdbbase" type="text" value=<%=rs.getString("Admit_vdb_base")%>></td></tr>
-		<tr><td>能否读取Vdb细节表</td><td><input name="vdbdetail" type="text" value=<%=rs.getString("Admit_vdb_detail")%>></td></tr>
-		<tr><td>能否读取模拟机表</td><td><input name="simulator" type="text" value=<%=rs.getString("Admit_sim")%>></td></tr>
-		<tr><td>能否下载</td><td><input name="download" type="text" value=<%=rs.getString("Admin_download")%>></td></tr>
-		<tr><td>管理员读写</td><td><input name="admin" type="text" value=<%=rs.getString("Admin")%>></td></tr>
-		</table>
-			<input type="submit" name="submit" value="保存" style="width:100px; height:50px;">
-			<button type="button" id="close" style="width:100px; height:50px;" onclick="CloseDiv()" id="open">关闭</button>
-		</form>
-<%} %>
 </div>
 <button type="button" class="addbutton" style="width:60px;" onclick="javascript:OpenDiv();" id="open">新增</button>
 </body>
